@@ -7,7 +7,7 @@ def s_standings(x):
         pivot=x[2*i+1]
         name=x[2*i]
         if pivot < x[2*i+3]:
-            x[2*i+1]=round(x[2*i+3],1)
+            x[2*i+1]=x[2*i+3]
             x[2*i]=x[2*i+2]
             x[2*i+2]=name
             x[2*i+3]=pivot
@@ -133,7 +133,7 @@ if decision=='analysis':
                 print('total games played:', games, '\n'
                       '# of wins:', wins, '\n'
                       '# of losses:', losses, '\n'
-                      'win/loss ratio:', ratio, '\n')
+                      'win/loss ratio:', ratio, '\n'  )
                 wins=0
                 losses=0
                 teams=[]
@@ -154,6 +154,7 @@ if decision=='analysis':
         if i>=0:
             continue
         
+                
 
     
 
