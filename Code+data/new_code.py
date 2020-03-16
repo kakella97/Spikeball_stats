@@ -5,20 +5,19 @@ Created on Fri Mar 13 22:47:18 2020
 @author: Krishant
 """
 import os.path
-
+import pprint
 
 def elo(elo_a, elo_b, score):
     pa = 1/(1+10**((elo_b - elo_a)/400)) # EXPECTED SCORE
     pb = 1 - pa # EXPECTED SCORE
     K=50
+    
     if score[:2] > score[3:]: # IF TEAM A WINS
-        win_bonus = 10*(int(score[:2]) - int(score[3:]))/21
-        elo_a = elo_a + K*(1 - pa) + 1
-        elo_b = elo_b + K*(0 - pb) - 1
+        elo_a = elo_a + K*(1 - pa) 
+        elo_b = elo_b + K*(0 - pb) 
     else: # IF TEAM B WINS
-        win_bonus = 10*(int(score[3:]) - int(score[:2]))/21
-        elo_b = elo_b + K*(1 - pb) + 1
-        elo_a = elo_a + K*(0 - pa) - 1
+        elo_b = elo_b + K*(1 - pb) 
+        elo_a = elo_a + K*(0 - pa) 
         
     return [int(elo_a), int(elo_b)]
 
@@ -216,11 +215,13 @@ if decision =='Add data' or decision=='data':
 if decision=='stats':
     fname=input('Filename >')
     with open(fname, "r") as f:
-        content = [line.rstrip() for line in f] # line.rstrip() returns a copy of the string with trailing characters stripped
+        content = [line.strip() for line in f] # line.rstrip() returns a copy of the string with trailing characters stripped
     f.close()
 
-    if content[-1]=='':
-        del content[-1]
+    for j in range(len(content)):
+        if content[j]=='':
+            del content[j:]
+            break
     teams={}
     players={}
     standings=[]
@@ -230,3 +231,5 @@ if decision=='stats':
         i+=2
         
     players = P_elo(teams, players)    
+    
+    pprint.pprint([teams, players])
