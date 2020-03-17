@@ -226,5 +226,5 @@ players = sorted(players.items(), key=lambda i: i[1][4], reverse=True)
 teams = sorted(teams.items(), key=lambda i: i[1][4], reverse=True)
 
 # pretty
-pprint.pp(teams)
-pprint.pp(players)
+pprint.pprint(teams)
+pprint.pprint(players)
